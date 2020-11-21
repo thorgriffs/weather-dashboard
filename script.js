@@ -71,8 +71,9 @@ $("#searchBtn").click(function() {
 			city.humidity = response.main.humidity;
 			city.windspeed = response.wind.speed;
 			city.lat = response.coord.lat;
-			city.lon = response.coord.lon;
-			
+            city.lon = response.coord.lon;
+            city.conditions = response.weather[0].icon;
+            
 			showCurrentConditions(city);
 			
             var uvIndex = buildIndexURL(city.lat, city.lon);
@@ -108,7 +109,8 @@ $("#searchBtn").click(function() {
 				
 				}
 				showDays(city);
-				addCityToHistory(city);
+                addCityToHistory(city);
+                $("#citySearch").val("");
             });                   
         });
         // response.main.name
@@ -152,7 +154,8 @@ function showCity(city) {
 }
 
 function showCurrentConditions(city) {
-	$("#cityHeader").text(city.name);
+    $("#cityHeader").text(city.name);
+    $("#conditions").attr("src", "http://openweathermap.org/img/wn/" + city.conditions + "@2x.png");
 	$("#temperature").text("Temperature: " + city.feels_like);
 	$("#humidity").text("Humidity: " + city.humidity);
 	$("#windSpeed").text("Wind Speed: " + city.windspeed);
@@ -169,7 +172,7 @@ function showDays(city) {
 		var day = city.days[i];		
 	
 		var date = new Date(day.dt * 1000);
-		var dateDisplay = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+		var dateDisplay = (date.getMonth() +1) + '/' + date.getDate() + '/' + date.getFullYear();
 
 		var idNum = i + 1;
 
