@@ -12,16 +12,14 @@ $("#searchBtn").click(function() {
         $.ajax({
             url: cityURL,
             method: "GET"
-        }).then(function(response))
-        
-
-
-
+        }).then(function(response) {
+            console.log(response);
+        });
 });
 
 function buildQueryURL(city) {
     //api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
-    var queryURL = "api.openweathermap.org/data/2.5/weather?q=";
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
     var apiKey = "849dd85b1de6d21e0d35bf2a08ccebea";
 
     return queryURL + city + "&appid=" + apiKey;
