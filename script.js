@@ -26,8 +26,16 @@ $("#searchBtn").click(function() {
                 console.log(response);
                 $("#uvIndex").text("UV Index: " + response.value);
             })
-        
-            
+            var forecast = buildForecastURL(response.coord.lat, response.coord.lon);
+            $.ajax({
+                url: forecast,
+                method: "GET"
+            }).then(function(response) {
+                console.log(response);
+                for (var i =0; i < 5; i++) {
+                    var date = response.daily[i].dt;
+                }
+            });                   
         });
         // response.main.name
         // response.weather[0].icon
@@ -35,9 +43,16 @@ $("#searchBtn").click(function() {
         // response.main.humidity
         // response.coord.lat
         // response.coord.lon
+
+        // var dateDisplay = daysDate
+        //     .getMonth() + '/' + daysDate
+        //     .getDate() + '/' + daysDate
+        //     .getFullYear();
+
 });
 
 var apiKey = "849dd85b1de6d21e0d35bf2a08ccebea";
+
 function buildCityURL(city) {
     //api.openweathermap.org/data/2.5/weather?q=London&appid={API key}
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -49,8 +64,14 @@ function buildIndexURL(lat, lon) {
     //http://api.openweathermap.org/data/2.5/uvi?lat={lat}&lon={lon}&appid={API key}
     var indexURL = "http://api.openweathermap.org/data/2.5/uvi?";
     
-    return indexURL + "lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-   
+    return indexURL + "lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;   
+};
+
+function buildForecastURL(lat, lon) {
+    // https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+    var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?"
+
+    return forecastURL + "lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
 }
 // $("#searchBtn").on("click", function() {
 //     // This line allows us to take advantage of the HTML "submit" property
