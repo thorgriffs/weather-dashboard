@@ -14,7 +14,24 @@ $("#searchBtn").click(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
+            $("#cityHeader").text(response.name);
+            $("#temperature").text("Temperature: " + response.main.feels_like);
+            $("#humidity").text("Humidity: " + response.main.humidity);
+            $("#windSpeed").text("Wind Speed: " + response.wind.speed);
+            $("#uvIndex").text("UV Index: " + "?");
+            
+
+
+
+
+
+
         });
+        // response.main.name
+        // response.weather[0].icon
+        // response.main.feels_like
+        // response.main.humidity
+        // response.wind.speed
 });
 
 function buildQueryURL(city) {
@@ -22,7 +39,7 @@ function buildQueryURL(city) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=";
     var apiKey = "849dd85b1de6d21e0d35bf2a08ccebea";
 
-    return queryURL + city + "&appid=" + apiKey;
+    return queryURL + city + "&units=imperial&appid=" + apiKey;
     
 
 
