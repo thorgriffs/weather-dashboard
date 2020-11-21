@@ -33,7 +33,24 @@ $("#searchBtn").click(function() {
             }).then(function(response) {
                 console.log(response);
                 for (var i =0; i < 5; i++) {
-                    var date = response.daily[i].dt;
+                    var day = response.daily[i];
+                    var date = new Date(day.dt * 1000);
+                    var dateDisplay = (date.getMonth() +1) + "/" + date.getDate() + "/" + date.getFullYear();
+
+                    var idNum = i + 1;
+
+                    var dayDate = $("#date" + idNum);
+                    dayDate.text(dateDisplay);
+
+                    var dayTemp = $("#temperature" + idNum);
+                    dayTemp.text((day.temp.day) + "°");
+
+                    var dayConditions = $("#conditions" + idNum);
+                    var weatherIcon = day.weather[0].icon;
+                    dayConditions.attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
+
+                    var dayHumid = $("#humidity" + idNum);
+                    dayHumid.text(day.humidity + '%');
                 }
             });                   
         });
@@ -44,10 +61,7 @@ $("#searchBtn").click(function() {
         // response.coord.lat
         // response.coord.lon
 
-        // var dateDisplay = daysDate
-        //     .getMonth() + '/' + daysDate
-        //     .getDate() + '/' + daysDate
-        //     .getFullYear();
+   
 
 });
 
