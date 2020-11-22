@@ -27,6 +27,7 @@ This is an assignment to create a weather dashboard that retrieves data from the
 * Again on this assignment, saving to `localStorage` and then retrieving was more complicated that I originally expected.  I needed to completely reformat my code mid-assignment in order to retrieve the searched cities history and allow the history to be usable to generate API calls to OpenWeather on click.  
 * The trouble spots I encountered on this project were not what I expected:
     * Formatting the date to display based on the data returned from the API was frustrating and I am uncertain about my approach.  I am still not displaying the current date in the Current Weather Conditions div because I ran out of time to figure out how to accomplish this task.  When beginning this project, I certainly did not think that the date display would be the toughest obstacle that I would encoutner.
+    * I have not implemented the UV Index color coding that was required.  This was due to time constraints.
     * I have still not figured out how to get the search input to run on Enter from the keyboard.  I found it somewhat complicated to get the search button to sit on the input field and was satisfied with finally making it functional.  
     * The icons that display on the 5-day forecast are not aligned to my liking.  However, I feel that my comfort level with styling of UI elements is growing and I at least struggled less on this project than I have in the past.  So, I will call this progress a win and continue to improve.  
 
